@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n="menuPageTitle">Our Menu | Restaurante Sabor</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;600&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            /* Changed from #fdfaf6 to a subtle warm cream */
+            background-color: #FAF7F2; 
+            color: #333;
+        }
+        
+        .playfair {
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .menu-hero {
+            /* Using a placeholder image with a fallback in case the URL fails */
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('https://placehold.co/1260x750/000000/FFFFFF?text=Menu+Hero') center/cover;
+            /* Original URL: https://plus.unsplash.com/premium_photo-1728412897842-06f0fc4c2ec6?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2 */
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .transition-all {
+            transition: all 0.3s ease-in-out;
+        }
+
+        .btn-primary {
+            @apply bg-[#d1a150] text-white font-semibold py-3 px-8 rounded-lg transition-all hover:bg-[#b88f48] shadow-md hover:shadow-lg;
+        }
+
+        .nav-link {
+            @apply text-gray-700 hover:text-[#d1a150] transition-all;
+        }
+        
+        .nav-link-active {
+            @apply text-[#d1a150] font-semibold;
+        }
+
+        .footer-link {
+            @apply text-gray-400 hover:text-white transition-all;
+        }
+
+        /* Language Switcher Styles */
+        .lang-switcher {
+            opacity: 0.6;
+            transition: all 0.2s ease-in-out;
+            cursor: pointer;
+        }
+        .lang-switcher.active {
+            opacity: 1;
+            transform: scale(1.1);
+            border-radius: 2px;
+            box-shadow: 0 0 6px rgba(209, 161, 80, 0.5);
+        }
+        .lang-switcher:hover {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Navigation -->
+    <nav class="bg-white shadow-md sticky top-0 z-50">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <div class="text-3xl font-bold playfair text-gray-800">Sabor</div>
+                
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="nav-link" data-i18n="navHome">Home</a>
+                    <a href="menu.html" class="nav-link-active" data-i18n="navMenu">Menu</a>
+                    <a href="about.html" class="nav-link" data-i18n="navAbout">About Us</a>
+                    <a href="contact.html" class="nav-link" data-i18n="navContact">Contact</a>
+                    
+                    <!-- Language Switchers -->
+                    <div class="flex items-center space-x-3 pl-4">
+                        <button id="lang-en" class="lang-switcher" data-lang="en">
+                            <img src="https://flagcdn.com/gb.svg" alt="English" class="w-6 h-auto rounded-sm">
+                        </button>
+                        <button id="lang-pt" class="lang-switcher" data-lang="pt">
+                            <img src="https://flagcdn.com/pt.svg" alt="Português" class="w-6 h-auto rounded-sm">
+                        </button>
+                    </div>
+                    
+                    <a href="contact.html" class="btn-primary" data-i18n="navReserve">Book a Table</a>
+                </div>
+                
+                <button class="md:hidden focus:outline-none" id="menu-toggle">
+                    <i data-feather="menu" class="text-gray-800 w-6 h-6"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="menu-hero h-96 flex items-center justify-center text-white">
+        <div class="container mx-auto px-6 text-center" data-aos="fade-up">
+            <h1 class="playfair text-5xl md:text-6xl font-bold mb-6" data-i18n="menuHeroTitle">A Culinary Journey</h1>
+            <p class="text-xl md:text-2xl max-w-2xl mx-auto" data-i18n="menuHeroSubtitle">Explore our diverse offerings, combining traditional Portuguese ingredients with modern techniques.</p>
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section class="py-24 bg-[#FAF7F2]">
+        <div class="container mx-auto px-6 max-w-5xl">
+            
+            <!-- Starters Section -->
+            <div class="mb-16" data-aos="fade-up">
+                <h2 class="playfair text-4xl font-bold text-[#d1a150] mb-10 text-center border-b-2 border-gray-200 pb-4" data-i18n="menuSectionStarters">Starters</h2>
+                
+                <div class="space-y-10">
+                    <!-- Dish 1: Soup of the Day (TRANSLATABLE) -->
+                    <div class="flex justify-between items-start border-b border-gray-100 pb-4">
+                        <div>
+                            <h3 class="playfair text-xl font-semibold text-gray-800" data-i18n="dishSoupTitle">Soup of the Day</h3>
+                            <p class="text-gray-500 max-w-lg" data-i18n="dishSoupDesc">Freshly prepared daily with seasonal ingredients from the local market.</p>
+                        </div>
+                        <span class="text-xl font-bold text-[#d1a150] ml-4">€8</span>
+                    </div>
+
+                    <!-- Dish 2: Seasonal Garden Salad (TRANSLATABLE) -->
+                    <div class="flex justify-between items-start border-b border-gray-100 pb-4">
+                        <div>
+                            <h3 class="playfair text-xl font-semibold text-gray-800" data-i18n="dishSaladTitle">Seasonal Garden Salad</h3>
+                            <p class="text-gray-500 max-w-lg" data-i18n="dishSaladDesc">Mixed greens, toasted nuts, goat cheese, and a honey-mustard vinaigrette.</p>
+                        </div>
+                        <span class="text-xl font-bold text-[#d1a150] ml-4">€12</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Courses Section -->
+            <div class="mb-16" data-aos="fade-up">
+                <h2 class="playfair text-4xl font-bold text-[#d1a150] mb-10 text-center border-b-2 border-gray-200 pb-4" data-i18n="menuSectionMains">Main Courses</h2>
+                
+                <div class="space-y-10">
+                    <!-- Dish 3: Bacalhau à Brás -->
+                    <div class="flex justify-between items-start border-b border-gray-100 pb-4">
+                        <div>
+                            <h3 class="playfair text-xl font-semibold text-gray-800" data-i18n="dishCodTitle">Bacalhau à Brás</h3>
+                            <p class="text-gray-500 max-w-lg" data-i18n="dishCodDesc">Shredded codfish, onions, and thinly chopped fried potatoes, all bound with scrambled eggs.</p>
+                        </div>
+                        <span class="text-xl font-bold text-[#d1a150] ml-4">€24</span>
+                    </div>
+
+                    <!-- Dish 4: Grilled Salmon Filet (TRANSLATABLE) -->
+                    <div class="flex justify-between items-start border-b border-gray-100 pb-4">
+                        <div>
+                            <h3 class="playfair text-xl font-semibold text-gray-800" data-i18n="dishSalmonTitle">Grilled Salmon Filet</h3>
+                            <p class="text-gray-500 max-w-lg" data-i18n="dishSalmonDesc">Perfectly grilled salmon served with asparagus and lemon butter sauce.</p>
+                        </div>
+                        <span class="text-xl font-bold text-[#d1a150] ml-4">€22</span>
+                    </div>
+
+                    <!-- Dish 5: Portuguese Steak (TRANSLATABLE) -->
+                    <div class="flex justify-between items-start border-b border-gray-100 pb-4">
+                        <div>
+                            <h3 class="playfair text-xl font-semibold text-gray-800" data-i18n="dishSteakTitle">Portuguese Steak</h3>
+                            <p class="text-gray-500 max-w-lg" data-i18n="dishSteakDesc">Tender sirloin steak with a creamy port wine sauce and potato crisps.</p>
+                        </div>
+                        <span class="text-xl font-bold text-[#d1a150] ml-4">€28</span>
+                    </div>
+
+                    <!-- Dish 6: Mushroom Risotto (TRANSLATABLE) -->
+                    <div class="flex justify-between items-start border-b border-gray-100 pb-4">
+                        <div>
+                            <h3 class="playfair text-xl font-semibold text-gray-800" data-i18n="dishRisottoTitle">Mushroom Risotto</h3>
+                            <p class="text-gray-500 max-w-lg" data-i18n="dishRisottoDesc">Creamy Arborio rice with wild mushrooms, truffle oil, and Parmesan cheese.</p>
+                        </div>
+                        <span class="text-xl font-bold text-[#d1a150] ml-4">€19</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Desserts Section -->
+            <div data-aos="fade-up">
+                <h2 class="playfair text-4xl font-bold text-[#d1a150] mb-10 text-center border-b-2 border-gray-200 pb-4" data-i18n="menuSectionDesserts">Desserts</h2>
+                
+                <div class="space-y-10">
+                    <!-- Dish 7: Pastel de Nata -->
+                    <div class="flex justify-between items-start border-b border-gray-100 pb-4">
+                        <div>
+                            <h3 class="playfair text-xl font-semibold text-gray-800" data-i18n="dishNataTitle">Pastel de Nata</h3>
+                            <p class="text-gray-500 max-w-lg" data-i18n="dishNataDesc">The classic Portuguese custard tart, served warm with cinnamon.</p>
+                        </div>
+                        <span class="text-xl font-bold text-[#d1a150] ml-4">€5</span>
+                    </div>
+
+                    <!-- Dish 8: Chocolate Mousse (Corrected from duplicate Pastel de Nata) -->
+                    <div class="flex justify-between items-start border-b border-gray-100 pb-4">
+                        <div>
+                            <h3 class="playfair text-xl font-semibold text-gray-800" data-i18n="dishMousseTitle">Chocolate Mousse</h3>
+                            <p class="text-gray-500 max-w-lg" data-i18n="dishMousseDesc">Rich, light, and airy dark chocolate mousse, a beloved Portuguese classic.</p>
+                        </div>
+                        <span class="text-xl font-bold text-[#d1a150] ml-4">€7</span>
+                    </div>
+
+                    <!-- Dish 9: Seasonal Cheesecake (TRANSLATABLE) -->
+                    <div class="flex justify-between items-start border-b border-gray-100 pb-4">
+                        <div>
+                            <h3 class="playfair text-xl font-semibold text-gray-800" data-i18n="dishCheesecakeTitle">Seasonal Cheesecake</h3>
+                            <p class="text-gray-500 max-w-lg" data-i18n="dishCheesecakeDesc">Creamy cheesecake with a digestive biscuit base and seasonal fruit topping.</p>
+                        </div>
+                        <span class="text-xl font-bold text-[#d1a150] ml-4">€8</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- Footer Section -->
+    <footer class="bg-gray-900 text-white py-16">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12">
+                <div class="mb-8 md:mb-0">
+                    <h3 class="playfair text-2xl font-bold mb-4">Sabor</h3>
+                    <p class="text-gray-400" data-i18n="footerDesc">Modern cuisine inspired by the timeless flavours of Portugal.</p>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold text-lg mb-4" data-i18n="footerNavTitle">Navigation</h4>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="footer-link" data-i18n="navHome">Home</a></li>
+                        <li><a href="menu.html" class="footer-link" data-i18n="navMenu">Menu</a></li>
+                        <li><a href="about.html" class="footer-link" data-i18n="navAbout">About Us</a></li>
+                        <li><a href="contact.html" class="footer-link" data-i18n="navContact">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold text-lg mb-4" data-i18n="footerHoursTitle">Opening Hours</h4>
+                    <ul class="text-gray-400 space-y-2">
+                        <li data-i18n="footerHours1">Tues - Fri: 18:00 - 23:00</li>
+                        <li data-i18n="footerHours2">Sat: 12:00 - 23:30</li>
+                        <li data-i18n="footerHours3">Sun: 12:00 - 22:00</li>
+                        <li>Mon: Closed</li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold text-lg mb-4" data-i18n="footerFollowTitle">Follow Us</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white"><i data-feather="facebook" class="w-6 h-6"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i data-feather="instagram" class="w-6 h-6"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i data-feather="twitter" class="w-6 h-6"></i></a>
+                    </div>
+                    <p class="text-gray-400 mt-4">Rua do Sabor, 123<br>Lisbon, Portugal</p>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
+                <p data-i18n="footerCopyright">&copy; 2025 Restaurante Sabor. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // --- Translation Data (Replaces lang.js) ---
+        window.translations = {
+            en: {
+                // Global Navigation
+                navHome: "Home",
+                navMenu: "Menu",
+                navAbout: "About Us",
+                navContact: "Contact",
+                navReserve: "Book a Table",
+                // Menu Page
+                menuPageTitle: "Our Menu | Restaurante Sabor",
+                menuHeroTitle: "A Culinary Journey",
+                menuHeroSubtitle: "Explore our diverse offerings, combining traditional Portuguese ingredients with modern techniques.",
+                menuSectionStarters: "Starters",
+                dishSoupTitle: "Soup of the Day",
+                dishSoupDesc: "Freshly prepared daily with seasonal ingredients from the local market.",
+                dishSaladTitle: "Seasonal Garden Salad",
+                dishSaladDesc: "Mixed greens, toasted nuts, goat cheese, and a honey-mustard vinaigrette.",
+                menuSectionMains: "Main Courses",
+                dishCodTitle: "Bacalhau à Brás",
+                dishCodDesc: "Shredded codfish, onions, and thinly chopped fried potatoes, all bound with scrambled eggs.",
+                dishSalmonTitle: "Grilled Salmon Filet",
+                dishSalmonDesc: "Perfectly grilled salmon served with asparagus and lemon butter sauce.",
+                dishSteakTitle: "Portuguese Steak",
+                dishSteakDesc: "Tender sirloin steak with a creamy port wine sauce and potato crisps.",
+                dishRisottoTitle: "Mushroom Risotto",
+                dishRisottoDesc: "Creamy Arborio rice with wild mushrooms, truffle oil, and Parmesan cheese.",
+                menuSectionDesserts: "Desserts",
+                dishNataTitle: "Pastel de Nata",
+                dishNataDesc: "The classic Portuguese custard tart, served warm with cinnamon.",
+                dishMousseTitle: "Chocolate Mousse",
+                dishMousseDesc: "Rich, light, and airy dark chocolate mousse, a beloved Portuguese classic.",
+                dishCheesecakeTitle: "Seasonal Cheesecake",
+                dishCheesecakeDesc: "Creamy cheesecake with a digestive biscuit base and seasonal fruit topping.",
+                // Footer
+                footerDesc: "Modern cuisine inspired by the timeless flavours of Portugal.",
+                footerNavTitle: "Navigation",
+                footerHoursTitle: "Opening Hours",
+                footerHours1: "Tues - Fri: 18:00 - 23:00",
+                footerHours2: "Sat: 12:00 - 23:30",
+                footerHours3: "Sun: 12:00 - 22:00",
+                footerCopyright: "&copy; 2025 Restaurante Sabor. All rights reserved.",
+            },
+            pt: {
+                // Global Navigation
+                navHome: "Início",
+                navMenu: "Menu",
+                navAbout: "Sobre Nós",
+                navContact: "Contato",
+                navReserve: "Reservar Mesa",
+                // Menu Page
+                menuPageTitle: "Nosso Menu | Restaurante Sabor",
+                menuHeroTitle: "Uma Jornada Culinária",
+                menuHeroSubtitle: "Explore as nossas diversas ofertas, combinando ingredientes tradicionais portugueses com técnicas modernas.",
+                menuSectionStarters: "Entradas",
+                dishSoupTitle: "Sopa do Dia",
+                dishSoupDesc: "Preparada diariamente com ingredientes sazonais frescos do mercado local.",
+                dishSaladTitle: "Salada de Jardim Sazonal",
+                dishSaladDesc: "Mistura de folhas, nozes torradas, queijo de cabra e vinagrete de mel e mostarda.",
+                menuSectionMains: "Pratos Principais",
+                dishCodTitle: "Bacalhau à Brás",
+                dishCodDesc: "Bacalhau desfiado, cebola e batata palha, tudo ligado com ovo mexido.",
+                dishSalmonTitle: "Filete de Salmão Grelhado",
+                dishSalmonDesc: "Salmão grelhado na perfeição servido com espargos e molho de manteiga e limão.",
+                dishSteakTitle: "Bife à Portuguesa",
+                dishSteakDesc: "Bife da vazia tenro com um cremoso molho de vinho do Porto e batatas fritas.",
+                dishRisottoTitle: "Risotto de Cogumelos",
+                dishRisottoDesc: "Arroz Arborio cremoso com cogumelos selvagens, azeite de trufa e queijo parmesão.",
+                menuSectionDesserts: "Sobremesas",
+                dishNataTitle: "Pastel de Nata",
+                dishNataDesc: "O clássico pastel de nata português, servido quente com canela.",
+                dishMousseTitle: "Mousse de Chocolate",
+                dishMousseDesc: "Rica, leve e aerada mousse de chocolate preto, um clássico português adorado.",
+                dishCheesecakeTitle: "Cheesecake Sazonal",
+                dishCheesecakeDesc: "Cheesecake cremoso com base de bolacha digestiva e cobertura de frutas da estação.",
+                // Footer
+                footerDesc: "Cozinha moderna inspirada nos sabores intemporais de Portugal.",
+                footerNavTitle: "Navegação",
+                footerHoursTitle: "Horário de Funcionamento",
+                footerHours1: "Terça a Sexta: 18:00 - 23:00",
+                footerHours2: "Sáb: 12:00 - 23:30",
+                footerHours3: "Dom: 12:00 - 22:00",
+                footerCopyright: "&copy; 2025 Restaurante Sabor. Todos os direitos reservados.",
+            }
+        };
+
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true
+        });
+        feather.replace();
+
+        // Menu mobile
+        document.getElementById("menu-toggle").addEventListener("click", function() {
+            const nav = document.querySelector("nav .md\\:flex");
+            nav.classList.toggle("hidden");
+        });
+
+        // --- Language Switcher Logic ---
+        const getLanguage = () => {
+            let lang = localStorage.getItem('lang');
+            if (!lang) {
+                // Default to English if no language is set
+                lang = 'en'; 
+                localStorage.setItem('lang', lang);
+            }
+            return lang;
+        };
+
+        const setLanguage = (lang) => {
+            localStorage.setItem('lang', lang);
+            translatePage(lang);
+            updateSwitcherUI(lang);
+        };
+
+        const translatePage = (lang) => {
+            if (typeof window.translations === 'undefined' || !window.translations[lang]) {
+                console.error(`Translations for language "${lang}" not found or translations object is missing.`);
+                return;
+            }
+            const translations = window.translations;
+
+            document.querySelectorAll('[data-i18n]').forEach(element => {
+                const key = element.getAttribute('data-i18n');
+                if (translations[lang][key]) {
+                    element.innerHTML = translations[lang][key];
+                }
+            });
+            
+            // Handle placeholders specifically as innerHTML won't work for them
+            document.querySelectorAll('[placeholder]').forEach(element => {
+                const placeholderKey = element.getAttribute('data-i18n-placeholder');
+                if (placeholderKey && translations[lang][placeholderKey]) {
+                    element.placeholder = translations[lang][placeholderKey];
+                }
+            });
+
+            const titleElement = document.querySelector('title[data-i18n]');
+            if (titleElement) {
+                const titleKey = titleElement.getAttribute('data-i18n');
+                if (translations[lang][titleKey]) {
+                    document.title = translations[lang][titleKey];
+                }
+            }
+            document.documentElement.lang = lang;
+        };
+
+        const updateSwitcherUI = (lang) => {
+            document.querySelectorAll('.lang-switcher').forEach(switcher => {
+                if (switcher.getAttribute('data-lang') === lang) {
+                    switcher.classList.add('active');
+                } else {
+                    switcher.classList.remove('active');
+                }
+            });
+        };
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // Check if translations are loaded (which they should be, as they are inline)
+            if (typeof window.translations === 'undefined') {
+                console.error('CRITICAL: Translations object failed to load.');
+                return;
+            }
+
+            const currentLang = getLanguage();
+            translatePage(currentLang);
+            updateSwitcherUI(currentLang);
+
+            // Attach listeners to language buttons
+            document.getElementById('lang-en').addEventListener('click', () => setLanguage('en'));
+            document.getElementById('lang-pt').addEventListener('click', () => setLanguage('pt'));
+        });
+    </script>
+</body>
+</html>
