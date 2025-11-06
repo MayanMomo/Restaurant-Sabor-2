@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n="aboutPageTitle">Our Story | Restaurante Sabor</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;600&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #fdfaf6;
+            color: #333;
+        }
+        
+        .playfair {
+            font-family: 'Playfair Display', serif;
+        }
+
+        .about-hero {
+            /* This is a placeholder image for a restaurant interior/ambience */
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('https://images.pexels.com/photos/941861/pexels-photo-941861.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .transition-all {
+            transition: all 0.3s ease-in-out;
+        }
+
+        .btn-primary {
+            @apply bg-[#d1a150] text-white font-semibold py-3 px-8 rounded-lg transition-all hover:bg-[#b88f48] shadow-md hover:shadow-lg;
+        }
+
+        .nav-link {
+            @apply text-gray-700 hover:text-[#d1a150] transition-all;
+        }
+
+        .nav-link-active {
+            @apply text-[#d1a150] font-semibold;
+        }
+
+        .footer-link {
+            @apply text-gray-400 hover:text-white transition-all;
+        }
+
+        /* Language Switcher Styles */
+        .lang-switcher {
+            opacity: 0.6;
+            transition: all 0.2s ease-in-out;
+            cursor: pointer;
+        }
+        .lang-switcher.active {
+            opacity: 1;
+            transform: scale(1.1);
+            border-radius: 2px;
+            box-shadow: 0 0 6px rgba(209, 161, 80, 0.5);
+        }
+        .lang-switcher:hover {
+            opacity: 1;
+        }
+
+        /* Mobile Menu Container Style */
+        #mobile-menu {
+            display: none;
+            /* Hidden by default, shown by JS on toggle */
+        }
+        
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Navegação -->
+    <nav class="bg-white shadow-md sticky top-0 z-50">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <div class="text-3xl font-bold playfair text-gray-800">Sabor</div>
+                
+                <div class="hidden md:flex items-center space-x-8" id="desktop-nav-links">
+                    <a href="index.html" class="nav-link" data-i18n="navHome">Home</a>
+                    <a href="menu.html" class="nav-link" data-i18n="navMenu">Menu</a>
+                    <a href="about.html" class="nav-link-active" data-i18n="navAbout">About Us</a>
+                    <a href="contact.html" class="nav-link" data-i18n="navContact">Contact</a>
+                    
+                    <!-- Language Switcher -->
+                    <div class="flex items-center space-x-3 pl-4">
+                        <button id="lang-en" class="lang-switcher" data-lang="en">
+                            <img src="https://flagcdn.com/gb.svg" alt="English" class="w-6 h-auto rounded-sm">
+                        </button>
+                        <button id="lang-pt" class="lang-switcher" data-lang="pt">
+                            <img src="https://flagcdn.com/pt.svg" alt="Português" class="w-6 h-auto rounded-sm">
+                        </button>
+                    </div>
+                    
+                    <a href="contact.html" class="btn-primary" data-i18n="navReserve">Book a Table</a>
+                </div>
+                
+                <button class="md:hidden focus:outline-none" id="menu-toggle">
+                    <i data-feather="menu" class="text-gray-800 w-6 h-6"></i>
+                </button>
+            </div>
+        </div>
+        <!-- Mobile Menu (initially hidden) -->
+        <div id="mobile-menu" class="md:hidden bg-white px-6 pb-4 shadow-lg">
+            <div class="flex flex-col space-y-3 pt-2">
+                <a href="index.html" class="nav-link py-2" data-i18n="navHome">Home</a>
+                <a href="menu.html" class="nav-link py-2" data-i18n="navMenu">Menu</a>
+                <a href="about.html" class="nav-link-active py-2" data-i18n="navAbout">About Us</a>
+                <a href="contact.html" class="nav-link py-2" data-i18n="navContact">Contact</a>
+                <a href="contact.html" class="btn-primary text-center mt-4" data-i18n="navReserve">Book a Table</a>
+            </div>
+            <div class="flex justify-center space-x-6 py-4 border-t mt-4">
+                <button id="mobile-lang-en" class="lang-switcher" data-lang="en">
+                    <img src="https://flagcdn.com/gb.svg" alt="English" class="w-8 h-auto rounded-sm">
+                </button>
+                <button id="mobile-lang-pt" class="lang-switcher" data-lang="pt">
+                    <img src="https://flagcdn.com/pt.svg" alt="Português" class="w-8 h-auto rounded-sm">
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- About Hero -->
+    <section class="about-hero h-96 flex items-center justify-center text-white">
+        <div class="container mx-auto px-6 text-center" data-aos="fade-up">
+            <h1 class="playfair text-5xl md:text-6xl font-bold mb-6" data-i18n="aboutHeroTitle">Our Story</h1>
+            <p class="text-xl md:text-2xl mb-8 max-w-2xl mx-auto" data-i18n="aboutHeroSubtitle">A passion for flavour, a dedication to craft</p>
+        </div>
+    </section>
+
+    <!-- Our Philosophy Section -->
+    <section class="py-24 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row-reverse items-center gap-12">
+                <div class="md:w-1/2" data-aos="fade-left">
+                    <img src="https://images.pexels.com/photos/313700/pexels-photo-313700.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Fresh local ingredients" class="rounded-lg shadow-2xl w-full h-full object-cover">
+                </div>
+                <div class="md:w-1/2" data-aos="fade-right">
+                    <h2 class="playfair text-4xl md:text-5xl font-bold text-gray-800 mb-6" data-i18n="aboutPhilosophyTitle">Our Philosophy</h2>
+                    <p class="text-gray-600 mb-4 text-lg" data-i18n="aboutPhilosophyDesc1">At Restaurante Sabor, our philosophy is simple: food is memory. We believe in honouring the past by using the authentic, bold flavours of Portugal.</p>
+                    <p class="text-gray-600 text-lg" data-i18n="aboutPhilosophyDesc2">We partner with local farmers, fishermen, and winemakers to ensure every dish is a celebration of the finest ingredients our region has to offer. From the sea to the table, our commitment is to freshness and quality.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Meet the Chef -->
+    <section class="py-24 bg-[#fdfaf6]">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row items-center gap-12">
+                <div class="md:w-1/2" data-aos="fade-right">
+                    <!-- Rounded Image for Chef -->
+                    <img src="https://images.pexels.com/photos/3771120/pexels-photo-3771120.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Chef Sofia Almeida" class="rounded-full shadow-2xl w-full max-w-sm mx-auto h-auto aspect-square object-cover">
+                </div>
+                <div class="md:w-1/2" data-aos="fade-left">
+                    <h2 class="playfair text-4xl md:text-5xl font-bold text-gray-800 mb-6" data-i18n="aboutChefTitle">Meet Our Chef</h2>
+                    <h3 class="playfair text-3xl font-bold text-[#d1a150] mb-2" data-i18n="aboutChefName">Chef Sofia Almeida</h3>
+                    <p class="text-gray-600 font-semibold text-lg mb-4" data-i18n="aboutChefRole">Head Chef & Founder</p>
+                    <p class="text-gray-600 mb-8 text-lg" data-i18n="aboutChefDesc">Born in Lisbon and trained in the finest kitchens of Europe, Chef Sofia returns to her roots with Sabor. Her vision is to deconstruct traditional dishes and rebuild them with a refined, modern elegance. Her passion is in every plate.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="py-24 bg-gray-800 text-white">
+        <div class="container mx-auto px-6 text-center" data-aos="fade-up">
+            <h2 class="playfair text-4xl md:text-5xl font-bold mb-8" data-i18n="aboutCtaTitle">Join Us for Dinner</h2>
+            <p class="text-xl max-w-2xl mx-auto mb-10" data-i18n="aboutCtaSubtitle">Experience the passion and craft that defines Restaurante Sabor.</p>
+            <a href="contact.html" class="btn-primary" data-i18n="aboutCtaBtn">Make a Reservation</a>
+        </div>
+    </section>
+
+    <!-- Rodapé -->
+    <footer class="bg-gray-900 text-white py-16">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12">
+                <div class="mb-8 md:mb-0">
+                    <h3 class="playfair text-2xl font-bold mb-4">Sabor</h3>
+                    <p class="text-gray-400" data-i18n="footerDesc">Modern cuisine inspired by the timeless flavours of Portugal.</p>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold text-lg mb-4" data-i18n="footerNavTitle">Navigation</h4>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="footer-link" data-i18n="navHome">Home</a></li>
+                        <li><a href="menu.html" class="footer-link" data-i18n="navMenu">Menu</a></li>
+                        <li><a href="about.html" class="footer-link" data-i18n="navAbout">About Us</a></li>
+                        <li><a href="contact.html" class="footer-link" data-i18n="navContact">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold text-lg mb-4" data-i18n="footerHoursTitle">Opening Hours</h4>
+                    <ul class="text-gray-400 space-y-2">
+                        <li data-i18n="footerHours1">Tues - Fri: 18:00 - 23:00</li>
+                        <li data-i18n="footerHours2">Sat: 12:00 - 23:30</li>
+                        <li data-i18n="footerHours3">Sun: 12:00 - 22:00</li>
+                        <li>Mon: Closed</li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold text-lg mb-4" data-i18n="footerFollowTitle">Follow Us</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white"><i data-feather="facebook" class="w-6 h-6"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i data-feather="instagram" class="w-6 h-6"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i data-feather="twitter" class="w-6 h-6"></i></a>
+                    </div>
+                    <p class="text-gray-400 mt-4">Rua do Sabor, 123<br>Lisbon, Portugal</p>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
+                <p data-i18n="footerCopyright">&copy; 2025 Restaurante Sabor. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // --- Translation Data Dictionary ---
+        const translations = {
+            "en": {
+                "aboutPageTitle": "Our Story | Restaurante Sabor",
+                "navHome": "Home",
+                "navMenu": "Menu",
+                "navAbout": "About Us",
+                "navContact": "Contact",
+                "navReserve": "Book a Table",
+                "aboutHeroTitle": "Our Story",
+                "aboutHeroSubtitle": "A passion for flavour, a dedication to craft",
+                "aboutPhilosophyTitle": "Our Philosophy",
+                "aboutPhilosophyDesc1": "At Restaurante Sabor, our philosophy is simple: food is memory. We believe in honouring the past by using the authentic, bold flavours of Portugal.",
+                "aboutPhilosophyDesc2": "We partner with local farmers, fishermen, and winemakers to ensure every dish is a celebration of the finest ingredients our region has to offer. From the sea to the table, our commitment is to freshness and quality.",
+                "aboutChefTitle": "Meet Our Chef",
+                "aboutChefName": "Chef Sofia Almeida",
+                "aboutChefRole": "Head Chef & Founder",
+                "aboutChefDesc": "Born in Lisbon and trained in the finest kitchens of Europe, Chef Sofia returns to her roots with Sabor. Her vision is to deconstruct traditional dishes and rebuild them with a refined, modern elegance. Her passion is in every plate.",
+                "aboutCtaTitle": "Join Us for Dinner",
+                "aboutCtaSubtitle": "Experience the passion and craft that defines Restaurante Sabor.",
+                "aboutCtaBtn": "Make a Reservation",
+                "footerDesc": "Modern cuisine inspired by the timeless flavours of Portugal.",
+                "footerNavTitle": "Navigation",
+                "footerHoursTitle": "Opening Hours",
+                "footerHours1": "Tues - Fri: 18:00 - 23:00",
+                "footerHours2": "Sat: 12:00 - 23:30",
+                "footerHours3": "Sun: 12:00 - 22:00",
+                "footerFollowTitle": "Follow Us",
+                "footerCopyright": "&copy; 2025 Restaurante Sabor. All rights reserved."
+            },
+            "pt": {
+                "aboutPageTitle": "A Nossa História | Restaurante Sabor",
+                "navHome": "Início",
+                "navMenu": "Menu",
+                "navAbout": "Sobre Nós",
+                "navContact": "Contacto",
+                "navReserve": "Reservar Mesa",
+                "aboutHeroTitle": "A Nossa História",
+                "aboutHeroSubtitle": "Uma paixão pelo sabor, uma dedicação à arte",
+                "aboutPhilosophyTitle": "A Nossa Filosofia",
+                "aboutPhilosophyDesc1": "No Restaurante Sabor, a nossa filosofia é simples: comida é memória. Acreditamos em honrar o passado utilizando os sabores autênticos e arrojados de Portugal.",
+                "aboutPhilosophyDesc2": "Trabalhamos com agricultores, pescadores e produtores de vinho locais para garantir que cada prato seja uma celebração dos melhores ingredientes que a nossa região tem para oferecer. Do mar à mesa, o nosso compromisso é com a frescura e a qualidade.",
+                "aboutChefTitle": "Conheça a Nossa Chef",
+                "aboutChefName": "Chef Sofia Almeida",
+                "aboutChefRole": "Chef Executiva e Fundadora",
+                "aboutChefDesc": "Nascida em Lisboa e formada nas melhores cozinhas da Europa, a Chef Sofia regressa às suas raízes com o Sabor. A sua visão é desconstruir pratos tradicionais e reconstruí-los com uma elegância moderna e refinada. A sua paixão está em cada prato.",
+                "aboutCtaTitle": "Junte-se a Nós para Jantar",
+                "aboutCtaSubtitle": "Experimente a paixão e a arte que definem o Restaurante Sabor.",
+                "aboutCtaBtn": "Fazer uma Reserva",
+                "footerDesc": "Cozinha moderna inspirada nos sabores intemporais de Portugal.",
+                "footerNavTitle": "Navegação",
+                "footerHoursTitle": "Horário de Funcionamento",
+                "footerHours1": "Ter - Sex: 18:00 - 23:00",
+                "footerHours2": "Sáb: 12:00 - 23:30",
+                "footerHours3": "Dom: 12:00 - 22:00",
+                "footerFollowTitle": "Siga-nos",
+                "footerCopyright": "&copy; 2025 Restaurante Sabor. Todos os direitos reservados."
+            }
+        };
+
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true
+        });
+        feather.replace();
+
+        // Mobile menu toggle
+        const menuToggle = document.getElementById("menu-toggle");
+        const mobileMenu = document.getElementById("mobile-menu");
+
+        menuToggle.addEventListener("click", function() {
+            mobileMenu.style.display = mobileMenu.style.display === 'block' ? 'none' : 'block';
+            const icon = menuToggle.querySelector('i');
+            icon.setAttribute('data-feather', mobileMenu.style.display === 'block' ? 'x' : 'menu');
+            feather.replace();
+        });
+
+
+        // --- Language Switcher Logic ---
+        
+        const getLanguage = () => {
+            let lang = localStorage.getItem('lang');
+            if (!lang) {
+                lang = 'en';
+                localStorage.setItem('lang', lang);
+            }
+            return lang;
+        };
+
+        const setLanguage = (lang) => {
+            localStorage.setItem('lang', lang);
+            translatePage(lang);
+            updateSwitcherUI(lang);
+        };
+
+        const translatePage = (lang) => {
+            if (!translations[lang]) return;
+            document.querySelectorAll('[data-i18n]').forEach(element => {
+                const key = element.getAttribute('data-i18n');
+                if (translations[lang][key]) {
+                    // Use innerHTML for text content
+                    element.innerHTML = translations[lang][key];
+                }
+            });
+            const titleElement = document.querySelector('title[data-i18n]');
+            if (titleElement) {
+                const titleKey = titleElement.getAttribute('data-i18n');
+                if (translations[lang][titleKey]) {
+                    document.title = translations[lang][titleKey];
+                }
+            }
+            document.documentElement.lang = lang;
+        };
+
+        const updateSwitcherUI = (lang) => {
+            // Update desktop and mobile switchers
+            document.querySelectorAll('.lang-switcher').forEach(switcher => {
+                if (switcher.getAttribute('data-lang') === lang) {
+                    switcher.classList.add('active');
+                } else {
+                    switcher.classList.remove('active');
+                }
+            });
+        };
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const currentLang = getLanguage();
+            translatePage(currentLang);
+            updateSwitcherUI(currentLang);
+
+            // Desktop language buttons
+            document.getElementById('lang-en').addEventListener('click', () => setLanguage('en'));
+            document.getElementById('lang-pt').addEventListener('click', () => setLanguage('pt'));
+
+            // Mobile language buttons (added to the mobile menu)
+            document.getElementById('mobile-lang-en')?.addEventListener('click', () => setLanguage('en'));
+            document.getElementById('mobile-lang-pt')?.addEventListener('click', () => setLanguage('pt'));
+        });
+    </script>
+</body>
+</html>
